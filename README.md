@@ -1,4 +1,4 @@
-# flutterapiapp
+# flutter_appskeleton
 
 A new Flutter application.
 
