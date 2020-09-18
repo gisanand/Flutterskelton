@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appskeleton/basepackage/custom_theme.dart';
 import 'package:flutter_appskeleton/constants/StringConstants.dart';
 import 'package:flutter_appskeleton/customtexts/MyAssetImage.dart';
-import 'package:flutter_appskeleton/customtexts/Roundtext.dart';
+import 'package:flutter_appskeleton/customtexts/RoundButton.dart';
 import 'package:flutter_appskeleton/customtexts/AppStrings.dart';
 import 'package:flutter_appskeleton/customtexts/colorstring.dart';
 import 'package:flutter_appskeleton/customtexts/dimension.dart';
