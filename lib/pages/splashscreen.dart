@@ -56,7 +56,7 @@ String? updatvalues;
               ),
             ), tilecontroller);
           };
-      },scrolldirection: Axis.horizontal,
+      },scrolldirection: Axis.vertical,
       )
       ),
     );
