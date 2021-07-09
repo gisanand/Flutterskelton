@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1057551466034",
+    "project_id": "truffle-87c81",
+    "storage_bucket": "truffle-87c81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057551466034:android:82c9d07ee6d9a6fba0062b",
+        "android_client_info": {
+          "package_name": "com.apps.truffle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057551466034-0lbb5gjg5aelattlpmq64om8o11ujdh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.truffle",
+            "certificate_hash": "b8ad18e0ee72626531cc5531222ea9cac6fbb35d"
+          }
+        },
+        {
+          "client_id": "1057551466034-giehqega0f2b94vvoe9ss1dac37snjoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3xX9KcbE0LNIvs_FxxjUp49qGroqvARQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057551466034-4j2i0s3heip8kg0igrj1ru0he4t0vvb1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1057551466034-k1thdur6q0qdnj73f999lriaiud9tjiu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.truffle-beta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

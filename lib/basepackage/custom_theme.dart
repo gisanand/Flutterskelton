@@ -2,9 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 
-class custom_themecolor
+class CustomThemecolor
 {
-  custom_themecolor._();
+  CustomThemecolor._();
   static const Color defaultPrimaryColor = Color(0xFF389895);
   static const Color defaultAccentColor = Color(0xFF9C27B0);
   static const Color defaultButtonColor = Color(0xFF389895);

@@ -2,58 +2,54 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
 
-  static final UserPreferences _instance = UserPreferences._ctor();
+  static final UserPreferences? _instance = UserPreferences._ctor();
   factory UserPreferences() {
-    return _instance;
+    return _instance!;
   }
+  SharedPreferences? _prefs;
 
   UserPreferences._ctor();
 
-  SharedPreferences _prefs;
 
   init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  get data {
-    return _prefs.getString('Anand') ?? '';
-  }
-
   set data(String value) {
-    _prefs.setString('Anand', value);
+    _prefs!.setString('Anand', value);
   }
 
   Future setJwtToken(String value) {
-    return _prefs.setString('jwtToken', value);
+    return _prefs!.setString('jwtToken', value);
   }
 
   void savedata(String keyname, dynamic valuetype) {
 
     if (valuetype is int) {
-      _prefs.setInt("$keyname", valuetype);
+      _prefs!.setInt("$keyname", valuetype);
     } else if (valuetype is String) {
-      _prefs.setString("$keyname", valuetype);
+      _prefs!.setString("$keyname", valuetype);
     } else if (valuetype is bool) {
-      _prefs.setBool("$keyname", valuetype);
+      _prefs!.setBool("$keyname", valuetype);
     } else if (valuetype is double) {
-      _prefs.setDouble("$keyname", valuetype);
+      _prefs!.setDouble("$keyname", valuetype);
     }
   }
 
-  dynamic loaddata(String keyname, Object valuetype) {
+  dynamic loaddata(String keyname, Object valuetype,{dynamic defaultvalue}) {
 
 
-    Object defaultretentype = "";
-    Object retunvalue = "";
+    //Object defaultretentype = "";
+    //Object retunvalue = "";
     try {
       if (valuetype == 1) {
-        return _prefs.getString("$keyname") ?? "";
+        return _prefs!.getString("$keyname") ?? defaultvalue??"";
       } else if (valuetype == 2) {
-        return _prefs.getInt("$keyname") ?? 0;
+        return _prefs!.getInt("$keyname") ?? defaultvalue??0;
       } else if (valuetype == 3) {
-        return _prefs.getBool("$keyname") ?? false;
+        return _prefs!.getBool("$keyname") ?? defaultvalue??false;
       } else if (valuetype == 4) {
-        return _prefs.getDouble("$keyname") ?? 0.0;
+        return _prefs!.getDouble("$keyname") ?? defaultvalue??0.0;
       }
       // return retunvalue;
     } catch (e) {

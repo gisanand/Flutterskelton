@@ -1,14 +1,30 @@
-
-class colorstring{
-  static const String appcolor= "#02CA9E";
-  static const String grayline= "#E1E1E1";
-  static const String transparent= "#00000000";
-  static const String white= "#ffffff";
-  static const String black= "#000000";
-  static const String emailred= "#F14336";
-  static const String fbblue= "#4A389D";
-  static const String applilogin= "#000000";
-  static const String screenbg= "#FAFAFA";
-  static const String lighttextcolor= "#929292";
-  static const String greytextcolor= "#AEAEAE";
+class Colorstring {
+  static const String appcolor = "#00EBCF";
+  static const String appcolorsecond = "#FF0D51";
+  static const String appgradientstartcolor = "#00DFC6";
+  static const String appgradientendcolor = "#00DFC6";
+  static const String grayline = "#E1E1E1";
+  static const String transparent = "#00000000";
+  static const String white = "#ffffff";
+  static const String black = "#000000";
+  static const String green = "#00b300";
+  static const String emailred = "#F14336";
+  static const String fbblue = "#4A389D";
+  static const String applilogin = "#000000";
+  static const String screenbg = "#FAFAFA";
+  static const String lighttextcolor = "#929292";
+  static const String greytextcolor = "#AEAEAE";
+  static const String roundlinecolor = "#E5D6FF";
+  static const String editcolor = "#87ceeb";
+  static const String staryellow = "#FFD427";
+  static const String feedbackcolor = "#FBFBFB";
+  static const String timeremaining = "#CDE5D8";
+  static const String sendmessagecolor = "#CDE5D8";
+  static const String receivedmessagecolor = "#ECECEC";
+  static const String lightappcolor = "#D6FBF7";
+  static const String typeingbublelinecolor = "#30C1D2";
+  static const String iconscolor = "#b0b3d0";
+  static const String lightgreybgcolor = "#F4F4F4";
+  static const String verylightgreybgcolor = "#FBFBFB";
+  static const String appbarhomebg = "#D6FBF7";
 }

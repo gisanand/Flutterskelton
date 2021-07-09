@@ -1,4 +1,4 @@
-# flutter_appskeleton
+# flutter_skeletonapp
 
 A new Flutter application.
 

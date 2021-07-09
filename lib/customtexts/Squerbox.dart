@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appskeleton/basepackage/baseclass.dart';
-import 'package:flutter_appskeleton/utils/CommonUtils.dart';
+import 'package:flutter_skeletonapp/basepackage/baseclass.dart';
+import 'package:flutter_skeletonapp/customtexts/colorstring.dart';
+import 'package:flutter_skeletonapp/utils/CommonUtils.dart';
 
 class Squerbox extends StatelessWidget {
-  Widget textchild;
-  callback onItemtabed;
-  double width, height;
-  double roundradius;
-  double blurRadius;
+  Widget? textchild;
+  callback? onItemtabed;
+  double? width, height;
+  double? roundradius;
+  double? blurRadius;
   var marginvalue;
-  String startcolor, endcolor,BoxShadowcolor="";
+  String? startcolor, endcolor,boxShadowcolor="${Colorstring.black}";
 
   Squerbox(
       {this.textchild,
@@ -19,7 +20,7 @@ class Squerbox extends StatelessWidget {
       this.height,
       this.roundradius = 20,
       this.blurRadius,
-      this.marginvalue,this.startcolor, this.endcolor,this.BoxShadowcolor});
+      this.marginvalue,this.startcolor, this.endcolor,this.boxShadowcolor="${Colorstring.black}"});
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +29,28 @@ class Squerbox extends StatelessWidget {
     return GestureDetector(
       onTap: onItemtabed,
       child: Container(
+
         margin: marginvalue,
         width: width,
         height: height,
         decoration:  new BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              CommonUtils.getColorFromHex('$startcolor')!,
+              CommonUtils.getColorFromHex('$endcolor')!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         shape: BoxShape.rectangle,
         border: new Border.all(
-          color: Colors.black,
+          color: CommonUtils.getColorFromHex(boxShadowcolor!)!,
           width: 1.0,
         ),
       ),
         child: textchild,
       ),
     );
-    throw UnimplementedError();
+    //throw UnimplementedError();
   }
 }
