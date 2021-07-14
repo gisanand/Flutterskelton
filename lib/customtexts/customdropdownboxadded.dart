@@ -335,7 +335,7 @@ String? dropdownbgcolor="${Colorstring.white}";
   bool get barrierDismissible => true;
 
   @override
-  Color? get barrierColor => null;
+  Color? get barrierColor => Colors.red;
 
   @override
   final String? barrierLabel;
@@ -600,6 +600,7 @@ callback rethandelcallback(){
 }
 
   void handleTap() {
+
 print("on handle tap down call values ");
     if(widget.onclickdropdown == false)
     {

@@ -12,6 +12,7 @@ import 'package:flutter_skeletonapp/custom_drawer/drawer_user_controller.dart';
 import 'package:flutter_skeletonapp/custom_drawer/home_drawer.dart';
 import 'package:flutter_skeletonapp/customtexts/CustomText.dart';
 import 'package:flutter_skeletonapp/customtexts/colorstring.dart';
+import 'package:flutter_skeletonapp/customtexts/customdropdownboxadded.dart';
 import 'package:flutter_skeletonapp/customtexts/dimension.dart';
 import 'package:flutter_skeletonapp/utils/CommonUtils.dart';
 import 'package:shimmer/shimmer.dart';
@@ -26,6 +27,12 @@ class Splashscreen extends BasePage
 class SplashState extends State<Splashscreen> with baseclass , TickerProviderStateMixin {
 String? updatvalues;
 DrawerIndex currentscreenindex=DrawerIndex.HOME;
+
+MenuListItem? seletedcondition;
+List<MenuListItem>_conditiondropdown = [];
+String conditionerror = "";
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -53,7 +60,45 @@ body: DrawerUserController(
     //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
   },
   screenView: Container(
+    width: MediaQuery.of(context).size.width,
+    height: getHeight(context),
     color: currentscreenindex==DrawerIndex.HOME? Colors.blue:currentscreenindex==DrawerIndex.Help?Colors.green:Colors.purple,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        DropdownBelow(
+          paddingtopWidth: 10,
+          paddingbottomWidth: 10,
+          errormessage: conditionerror,
+          selectedtextcolor:Colorstring.white,
+          itemWidth: MediaQuery.of(context).size.width * 0.90,
+          textcolor: Colorstring.white,
+          onclickdropdown: true,
+          boxTextstyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
+          boxPadding: EdgeInsets.fromLTRB(13, 12, 0, 12),
+          boxWidth: MediaQuery.of(context).size.width * 0.90,
+          circularWidth: 10,
+          dropdownbgcolor: Colorstring.black,
+          icondata: Icons.keyboard_arrow_down_outlined,
+          iconcolor: Colors.white,
+          iconrightpadding: 20,
+          boxHeight: 55,
+          hint: Text("select the condition"),
+          value: seletedcondition,
+          items: _conditiondropdown,
+          onChanged: (values) {
+            print(values);
+            setState(() {
+              //if(seletedcondition==null||"${seletedcondition.id}" !=values.id) {
+                seletedcondition = values;
+                conditionerror = "";
+
+            });
+          },
+        ),
+      ],
+    ),
+
   ),
   //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
 ),
@@ -82,6 +127,11 @@ body: DrawerUserController(
   @override
   void initState() {
     super.initState();
+    _conditiondropdown.add(MenuListItem("new", "New"));
+    _conditiondropdown.add(MenuListItem("mint", "Mint"));
+    _conditiondropdown.add(MenuListItem("used", "Used"));
+    _conditiondropdown.add(MenuListItem("fair", "Fair"));
+    _conditiondropdown.add(MenuListItem("worn", "Worn"));
       startTime();
 
 
