@@ -10,6 +10,7 @@ import 'package:flutter_skeletonapp/basepackage/user_preferences.dart';
 import 'package:flutter_skeletonapp/constants/StringConstants.dart';
 import 'package:flutter_skeletonapp/custom_drawer/drawer_user_controller.dart';
 import 'package:flutter_skeletonapp/custom_drawer/home_drawer.dart';
+import 'package:flutter_skeletonapp/customtexts/AswomeDrawer.dart';
 import 'package:flutter_skeletonapp/customtexts/CustomText.dart';
 import 'package:flutter_skeletonapp/customtexts/colorstring.dart';
 import 'package:flutter_skeletonapp/customtexts/customdropdownboxadded.dart';
@@ -29,10 +30,14 @@ String? updatvalues;
 DrawerIndex currentscreenindex=DrawerIndex.HOME;
 
 MenuListItem? seletedcondition;
+List<AwsomeMenuListItem>_conditiondropdown2 = [];
 List<MenuListItem>_conditiondropdown = [];
 String conditionerror = "";
 
-
+bool _isBackPressedOrTouchedOutSide = false,
+    _isDropDownOpened = false,
+    _isPanDown = false;
+String _selectedItem = 'Please select';
   @override
   Widget build(BuildContext context) {
 
@@ -59,46 +64,73 @@ body: DrawerUserController(
     //changeIndex(drawerIndexdata);
     //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
   },
-  screenView: Container(
-    width: MediaQuery.of(context).size.width,
-    height: getHeight(context),
-    color: currentscreenindex==DrawerIndex.HOME? Colors.blue:currentscreenindex==DrawerIndex.Help?Colors.green:Colors.purple,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        DropdownBelow(
-          paddingtopWidth: 10,
-          paddingbottomWidth: 10,
-          errormessage: conditionerror,
-          selectedtextcolor:Colorstring.white,
-          itemWidth: MediaQuery.of(context).size.width * 0.90,
-          textcolor: Colorstring.white,
-          onclickdropdown: true,
-          boxTextstyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
-          boxPadding: EdgeInsets.fromLTRB(13, 12, 0, 12),
-          boxWidth: MediaQuery.of(context).size.width * 0.90,
-          circularWidth: 10,
-          dropdownbgcolor: Colorstring.black,
-          icondata: Icons.keyboard_arrow_down_outlined,
-          iconcolor: Colors.white,
-          iconrightpadding: 20,
-          boxHeight: 55,
-          hint: Text("select the condition"),
-          value: seletedcondition,
-          items: _conditiondropdown,
-          onChanged: (values) {
-            print(values);
-            setState(() {
-              //if(seletedcondition==null||"${seletedcondition.id}" !=values.id) {
-                seletedcondition = values;
-                conditionerror = "";
+  screenView: GestureDetector(
+    onTap: (){
+      setState(() {
+        _isBackPressedOrTouchedOutSide = true;
+        FocusScope.of(context).requestFocus(FocusNode());
+      });
 
-            });
-          },
-        ),
-      ],
+
+    },
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: getHeight(context),
+      color: currentscreenindex==DrawerIndex.HOME? Colors.blue:currentscreenindex==DrawerIndex.Help?Colors.green:Colors.purple,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownBelow(
+            paddingtopWidth: 10,
+            paddingbottomWidth: 10,
+            errormessage: conditionerror,
+            selectedtextcolor:Colorstring.white,
+            itemWidth: MediaQuery.of(context).size.width * 0.90,
+            textcolor: Colorstring.white,
+            onclickdropdown: true,
+            boxTextstyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
+            boxPadding: EdgeInsets.fromLTRB(13, 12, 0, 12),
+            boxWidth: MediaQuery.of(context).size.width * 0.90,
+            circularWidth: 10,
+            dropdownbgcolor: Colorstring.black,
+            icondata: Icons.keyboard_arrow_down_outlined,
+            iconcolor: Colors.white,
+            iconrightpadding: 20,
+            boxHeight: 55,
+            hint: Text("select the condition"),
+            value: seletedcondition,
+            items: _conditiondropdown,
+            onChanged: (values) {
+              print(values);
+              setState(() {
+                //if(seletedcondition==null||"${seletedcondition.id}" !=values.id) {
+                  seletedcondition = values;
+                  conditionerror = "";
+
+              });
+            },
+          ),
+          AwesomeDropDown(
+            numOfListItemToShow: 5,
+            isPanDown: _isPanDown,
+            dropDownList: _conditiondropdown2,
+            isBackPressedOrTouchedOutSide: _isBackPressedOrTouchedOutSide,
+            selectedItem: _selectedItem,
+            onDropDownItemClick: (selectedItem) {
+              _selectedItem = selectedItem;
+            },
+            dropStateChanged: (isOpened) {
+              _isDropDownOpened = isOpened;
+              if (!isOpened) {
+                _isBackPressedOrTouchedOutSide = false;
+              }
+            },
+          ),
+
+        ],
+      ),
+
     ),
-
   ),
   //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
 ),
@@ -132,6 +164,12 @@ body: DrawerUserController(
     _conditiondropdown.add(MenuListItem("used", "Used"));
     _conditiondropdown.add(MenuListItem("fair", "Fair"));
     _conditiondropdown.add(MenuListItem("worn", "Worn"));
+    _conditiondropdown2.add(AwsomeMenuListItem("new", "New"));
+    _conditiondropdown2.add(AwsomeMenuListItem("mint", "Mint"));
+    _conditiondropdown2.add(AwsomeMenuListItem("used", "Used"));
+    _conditiondropdown2.add(AwsomeMenuListItem("fair", "Fair"));
+    _conditiondropdown2.add(AwsomeMenuListItem("worn", "Worn"));
+    _conditiondropdown2.add(AwsomeMenuListItem("good", "good"));
       startTime();
 
 
