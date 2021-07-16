@@ -180,7 +180,7 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
         ),
       ));
     }
-print("widget height ${widget.height}");
+    print("widget height ${widget.height}");
     return new FadeTransition(
       opacity: _fadeOpacity,
       child: new CustomPaint(
@@ -324,8 +324,8 @@ class _DropdownRoute<T> extends PopupRoute<_DropdownRouteResult<T>> {
   final int? elevation;
   final ThemeData? theme;
   final TextStyle? style;
-String? textcolor;
-String? dropdownbgcolor="${Colorstring.white}";
+  String? textcolor;
+  String? dropdownbgcolor="${Colorstring.white}";
   ScrollController?  scrollController;
 
   @override
@@ -335,7 +335,7 @@ String? dropdownbgcolor="${Colorstring.white}";
   bool get barrierDismissible => true;
 
   @override
-  Color? get barrierColor => Colors.red;
+  Color? get barrierColor => null;
 
   @override
   final String? barrierLabel;
@@ -369,7 +369,7 @@ String? dropdownbgcolor="${Colorstring.white}";
 
     if (bottom > bottomPreferredLimit) {
       bottom = math.max(buttonTop + _kMenuItemHeight, (bottomPreferredLimit));
-     // menuTop = bottom - menuHeight + 200;
+      // menuTop = bottom - menuHeight + 200;
       print("the value  second bottom is  : $bottom");
 
     }
@@ -416,7 +416,8 @@ String? dropdownbgcolor="${Colorstring.white}";
   }
 
   void _dismiss() {
-    navigator?.removeRoute(this);
+
+    navigator!.removeRoute(this);
   }
 }
 typedef calleventback = void Function(callback);
@@ -516,8 +517,8 @@ class _DropdownBelowState<T> extends State<DropdownBelow<T>>
     with WidgetsBindingObserver {
 
 
-   int? _selectedIndex;
-   _DropdownRoute<T>? _dropdownRoute;
+  int? _selectedIndex;
+  _DropdownRoute<T>? _dropdownRoute;
 
   @override
   void initState() {
@@ -539,7 +540,7 @@ class _DropdownBelowState<T> extends State<DropdownBelow<T>>
   }
 
   void _removeDropdownRoute() {
-    _dropdownRoute?._dismiss();
+    _dropdownRoute!._dismiss();
     _dropdownRoute = null;
   }
 
@@ -552,25 +553,25 @@ class _DropdownBelowState<T> extends State<DropdownBelow<T>>
   void _updateSelectedIndex() {
     if(widget.value!=null) {
       print("defalut values name ${widget.value!.name}");
-    bool itemstatus=  widget.items! .where((MenuListItem item) => item.id == widget.value!.id)   .length ==  1;
-     /* assert(
+      bool itemstatus=  widget.items! .where((MenuListItem item) => item.id == widget.value!.id)   .length ==  1;
+      /* assert(
       widget.items
           .where((MenuListItem item) => item.id == widget.value.id)
           .length ==
           1);*/
-    if(itemstatus){
-    _selectedIndex = null;
-    if(widget.value!=null){
-    for (int itemIndex = 0; itemIndex < widget.items!.length; itemIndex++) {
-      if (widget.items![itemIndex].id == widget.value!.id) {
-        _selectedIndex = itemIndex;
-        return;
-      }
+      if(itemstatus){
+        _selectedIndex = null;
+        if(widget.value!=null){
+          for (int itemIndex = 0; itemIndex < widget.items!.length; itemIndex++) {
+            if (widget.items![itemIndex].id == widget.value!.id) {
+              _selectedIndex = itemIndex;
+              return;
+            }
+          }
+        }
+
       }
     }
-
-  }
-  }
   }
 
   TextStyle? get _textStyle =>
@@ -581,7 +582,7 @@ class _DropdownBelowState<T> extends State<DropdownBelow<T>>
         behavior: SnackBarBehavior.floating,
         duration: new Duration(milliseconds: 3000),
         content:  CustomText(
-            text:mode == 1 ? ('No Data found for the selected values.Please select/change the above values.'):"Sorry!. You can't able to change the value.",
+          text:mode == 1 ? ('No Data found for the selected values.Please select/change the above values.'):"Sorry!. You can't able to change the value.",
         ),
         action: SnackBarAction(
             label: 'OK', onPressed: ScaffoldMessenger.of(context).hideCurrentSnackBar),
@@ -589,19 +590,18 @@ class _DropdownBelowState<T> extends State<DropdownBelow<T>>
     );
   }
   void _shownormalToast(BuildContext context , int mode) {
-     Toast.show("No Data found for the selected values.Please select/change the above values.", context,
+    Toast.show("No Data found for the selected values.Please select/change the above values.", context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   }
-callback rethandelcallback(){
+  callback rethandelcallback(){
     callback returncallback=(){
       handleTap();
     };
     return returncallback;
-}
+  }
 
   void handleTap() {
-
-print("on handle tap down call values ");
+    print("on handle tap down call values ");
     if(widget.onclickdropdown == false)
     {
       _showToast(context , 2);
@@ -609,8 +609,8 @@ print("on handle tap down call values ");
       return;
     }
     if(widget.items!.length==0 )
-      {
-        /*if(widget.bottomsheet == true) {
+    {
+      /*if(widget.bottomsheet == true) {
           _shownormalToast(context,1);
           return;
 
@@ -619,24 +619,24 @@ print("on handle tap down call values ");
           _showToast(context, 1);
           return;
         }*/
-        if(widget.apicalldropdown!=null){
-          widget.apicalldropdown!(rethandelcallback());
+      if(widget.apicalldropdown!=null){
+        widget.apicalldropdown!(rethandelcallback());
 
-        }
-
-        if(widget.bottomsheet == true) {
-          return;
-
-        }
-        else{
-          return;
-        }
       }
 
+      if(widget.bottomsheet == true) {
+        return;
+
+      }
+      else{
+        return;
+      }
+    }
 
 
 
-      final RenderBox itemBox = context.findRenderObject() as RenderBox;
+
+    final RenderBox itemBox = context.findRenderObject() as RenderBox;
     final Rect itemRect = itemBox.localToGlobal(Offset.zero) & itemBox.size;
     final TextDirection textDirection = Directionality.of(context);
     final EdgeInsetsGeometry menuMargin =
@@ -662,10 +662,10 @@ print("on handle tap down call values ");
     Navigator.push(context, _dropdownRoute!)
         .then<void>(
             (_DropdownRouteResult<T>? newValue) {
-      _dropdownRoute = null;
-      if (!mounted || newValue == null) return;
-      if (widget.onChanged != null)  widget.onChanged!(newValue.result);
-    }
+          _dropdownRoute = null;
+          if (!mounted || newValue == null) return;
+          if (widget.onChanged != null)  widget.onChanged!(newValue.result);
+        }
     );
   }
 
@@ -679,13 +679,13 @@ print("on handle tap down call values ");
 
       items.add(
 
-        CustomText(
-          text: element.name,
-          familytype: 2,
-          textcolor: CommonUtils.getColorFromHex(_selectedIndex==null?widget.textcolor:widget.selectedtextcolor),
-          textsize: Dimension.text_medium,
-          softwrap: true,
-        )
+          CustomText(
+            text: element.name,
+            familytype: 2,
+            textcolor: CommonUtils.getColorFromHex(_selectedIndex==null?widget.textcolor:widget.selectedtextcolor),
+            textsize: Dimension.text_medium,
+            softwrap: true,
+          )
       );
     });
     int hintIndex;
@@ -708,34 +708,34 @@ print("on handle tap down call values ");
           width: widget.boxWidth,
           child: Column(children:[
             new Container(
-            decoration: BoxDecoration(
-              border: Border.all(color:CommonUtils.isHavingvalue(widget.errormessage)?Colors.red:widget.containercolor!, width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(widget.circularWidth!)),
-              color: Colors.transparent,
-            ),
-            padding: widget.boxPadding,
-            height: widget.boxHeight,
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Expanded(
-                  child: new IndexedStack(
-                    index: _selectedIndex,
-                    alignment: AlignmentDirectional.centerStart,
-                    children: items,
+              decoration: BoxDecoration(
+                border: Border.all(color:CommonUtils.isHavingvalue(widget.errormessage)?Colors.red:widget.containercolor!, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(widget.circularWidth!)),
+                color: Colors.transparent,
+              ),
+              padding: widget.boxPadding,
+              height: widget.boxHeight,
+              child: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Expanded(
+                    child: new IndexedStack(
+                      index: _selectedIndex,
+                      alignment: AlignmentDirectional.centerStart,
+                      children: items,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(right:(widget.iconrightpadding)!),
-                  child: new Icon(widget.icondata,color:widget.iconcolor,),
-                ),
-                // new Icon(Icons.arrow_drop_down,
-                //     size: widget.iconSize,
-                //     color: Color(0XFFbbbbbb)),
-              ],
+                  Padding(
+                    padding:  EdgeInsets.only(right:(widget.iconrightpadding)!),
+                    child: new Icon(widget.icondata,color:widget.iconcolor,),
+                  ),
+                  // new Icon(Icons.arrow_drop_down,
+                  //     size: widget.iconSize,
+                  //     color: Color(0XFFbbbbbb)),
+                ],
+              ),
             ),
-          ),
             Visibility(
               visible: CommonUtils.isHavingvalue(widget.errormessage),
               child: CustomText(
